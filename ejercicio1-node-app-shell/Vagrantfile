@@ -1,0 +1,27 @@
+Vagrant.configure("2") do |config|
+  
+  config.vm.box = "uwbbi/bionic-arm64"
+
+  # Instalar y configurar el ambiente para ejecutar una aplicación de node
+  config.vm.provision "shell",
+    inline:  "sudo apt update; 
+    sudo apt -y upgrade;
+    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -;
+    sudo apt install --yes nodejs;
+    sudo apt install --yes npm;
+    mkdir -p /node-app/;
+    chmod 777 /node-app/;
+    "
+  
+  # Copiar los assets de la app
+  config.vm.provision "file",
+    source: "../app", destination: "/node-app"
+  
+  # Instalar dependencias y ejecutar la aplicación
+  config.vm.provision "shell",
+    inline: "cd /node-app;
+    npm install;
+    npm install forever;
+    sudo forever start /node-app/app.js
+    "
+end
