@@ -13,12 +13,20 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
   config.vm.box = "uwbbi/bionic-arm64"
-  config.vm.provision "shell",
-    inline: "sudo apt update; 
-    sudo apt install --yes nginx;
-    echo 'Hello world'
-    "
-  
+  # config.vm.provision "shell",
+  #   inline: "sudo apt update; 
+  #   sudo apt install --yes nginx;
+  #   mkdir -p /tmp/files
+  #   sudo chmod 0777 /tmp/files
+  #   echo 'Hello world'
+  #   "
+  # config.vm.provision "file", source: "./hello-world/", destination: "/tmp/files/"
+  # config.vm.provision "shell",
+  #   inline: "sudo chmod 0666 /tmp/files/hello-world"
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "playbook.yml"
+  end
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

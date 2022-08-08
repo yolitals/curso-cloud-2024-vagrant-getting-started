@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: yes  
+  
+
+  tasks:  
+    - name: Update apt-get repo and cache
+      ansible.builtin.apt: 
+        update_cache: yes 
+        force_apt_get: yes 
+        cache_valid_time: 3600
+
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /tmp/files
+        state: directory
+        mode: '0777'
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: ./hello-world
+        dest: /tmp/files/hello-world
+        mode: '0666'
