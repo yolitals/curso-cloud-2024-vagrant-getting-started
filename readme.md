@@ -5,7 +5,7 @@
 - Descargar e instalar hipervisor
   - [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
   
-  - [VMWare fusion (Utilizar en Mac m1)](https://customerconnect.vmware.com/downloads/get-download?downloadGroup=FUS-PUBTP-2021H1)
+  - [VMWare fusion (Utilizar en Mac m1)](https://customerconnect.vmware.com/en/evalcenter?p=fusion-player-personal-13): Es necesario crear una cuenta para poder obtener una licencia personal.
   
 - Para VMWare Fusion es necesario descargar e instalar VMWare utility
   - [VMWare utility](https://www.vagrantup.com/docs/providers/vmware/vagrant-vmware-utility)
